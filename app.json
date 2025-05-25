@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "혜택이",
+    "slug": "hetaeki_app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/hetaeki_face.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/hetaeki_face.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.hetaeki-app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/hetaeki_face.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.hetaeki_app"
+    },
+    "web": {
+      "favicon": "./assets/hetaeki_face.png"
+    },
+    "plugins": [
+      [
+        "@react-native-seoul/kakao-login",
+        {
+          "kakaoAppKey": "a5ed2be980d7d066bb3fe2ad5066b193"
+        }
+      ]
+    ]
+  }
+}
