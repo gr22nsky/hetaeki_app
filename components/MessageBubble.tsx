@@ -24,11 +24,16 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ text, sender }) => {
     // Add other markdown styles for bot bubble if needed
   };
 
+  // text가 비어있을 때 안내 메시지 출력
+  const displayText = text && text.trim() ? text : '아직 답변이 준비되지 않았어요.';
+
   return (
     <View style={[styles.container, isUser ? styles.userContainer : styles.botContainer]}>
       <View style={[styles.bubble, isUser ? styles.userBubble : styles.botBubble]}>
-        {/* Use different markdown styles based on sender */}
-        <Markdown style={isUser ? userMarkdownStyles : botMarkdownStyles}>{text}</Markdown>
+        {/* 마크다운 파서 대신 Text로 임시 출력 */}
+        <Text>{displayText}</Text>
+        {/* 아래는 기존 마크다운 파서, 필요시 주석 해제 */}
+        {/* <Markdown style={isUser ? userMarkdownStyles : botMarkdownStyles}>{displayText}</Markdown> */}
       </View>
     </View>
   );

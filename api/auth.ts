@@ -20,3 +20,8 @@ export async function emailSignup(data: { email: string; password: string; age: 
   const res = await instance.post('/accounts/signup/', data);
   return res.data;
 }
+
+export async function refreshAccessToken(refresh: string) {
+  const res = await instance.post('/accounts/token/refresh/', { refresh });
+  return res.data; // { access, refresh }
+}

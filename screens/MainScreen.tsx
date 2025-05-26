@@ -39,6 +39,7 @@ export default function MainScreen({ navigation }: any) {
     try {
       const data = await postQuestion(question);
       setMessages(prevMessages => [...prevMessages, { text: data.answer, sender: 'bot' }]);
+      setUnlocked(false);
     } catch (e) {
       Alert.alert('답변을 불러오지 못했습니다.');
     } finally {
@@ -61,7 +62,12 @@ export default function MainScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        <Text style={styles.title}>혜택이에게 물어보기</Text>
+        <View style={styles.headerRow}>
+          <Text style={styles.title}>혜택이에게 물어보기</Text>
+          {messages.length > 0 && (
+            <Text style={styles.exitButton} onPress={() => setMessages([])}>나가기</Text>
+          )}
+        </View>
 
         {messages.length === 0 ? (
           <ScrollView style={styles.usageGuideContainer}>
@@ -73,14 +79,15 @@ export default function MainScreen({ navigation }: any) {
         </View>
           </ScrollView>
         ) : (
-          <FlatList
-            data={messages}
-            renderItem={renderMessage}
-            keyExtractor={(item, index) => index.toString()}
-            style={styles.messageList}
-            contentContainerStyle={styles.messageListContent}
-            inverted
-          />
+          <>
+            <FlatList
+              data={messages}
+              renderItem={renderMessage}
+              keyExtractor={(item, index) => index.toString()}
+              style={styles.messageList}
+              contentContainerStyle={styles.messageListContent}
+            />
+          </>
         )}
 
         {loading && <ActivityIndicator style={{ marginBottom: 8 }} color={colors.primary} />}
@@ -125,12 +132,20 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
   },
+  headerRow: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    marginTop: 35,
+    paddingHorizontal: 16,
+    minHeight: 40,
+  },
   title: {
+    flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
     color: colors.primary,
-    marginTop: 35,
-    marginBottom: 50,
     textAlign: 'center',
     fontFamily: 'base_font',
   },
@@ -199,5 +214,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 8,
     elevation: 2,
+  },
+  exitButton: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    color: colors.primary,
+    fontWeight: 'bold',
+    fontSize: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    backgroundColor: '#f0f0f0',
+    overflow: 'hidden',
   },
 }); 

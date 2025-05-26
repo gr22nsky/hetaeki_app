@@ -20,10 +20,10 @@ export default function HotTopicScreen() {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleShowTopics = async () => {
-    if (!unlocked) {
-      setAdVisible(true);
-      return;
-    }
+    setAdVisible(true);
+  };
+
+  const fetchTopics = async () => {
     setLoading(true);
     setTopics([]);
     try {
@@ -37,66 +37,67 @@ export default function HotTopicScreen() {
   };
 
   const handleReward = () => {
-    setUnlocked(true);
     setAdVisible(false);
-    handleShowTopics();
+    fetchTopics();
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Text style={styles.title}>연령별 인기 질문 TOP5</Text>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <Text style={styles.title}>연령별 인기 질문 TOP5</Text>
 
-      <View style={styles.sectionSpacing}>
-        <Text style={styles.guideText}>{hotTopicGuideText}</Text>
-      </View>
+        <View style={styles.sectionSpacing}>
+          <Text style={styles.guideText}>{hotTopicGuideText}</Text>
+        </View>
 
-      <View style={styles.sectionSpacing}>
-        <View style={styles.cardShadow}>
-          <View style={styles.resultCard}>
-            {loading ? (
-              <ActivityIndicator style={{ marginVertical: 32 }} color={colors.primary} />
-            ) : topics.length === 0 ? (
-              <Text style={styles.emptyText}>아직 인기 질문이 없습니다.{"\n"}'핫토픽 보기' 버튼을 눌러주세요.</Text>
-            ) : (
-              <ScrollView contentContainerStyle={styles.topicListScrollContent} showsVerticalScrollIndicator={false}>
-                {topics.map((topic, idx) => (
-                  <React.Fragment key={idx}>
-                    <View style={styles.topicRow}>
-                      <Text style={styles.topicRank}>{idx + 1}위</Text>
-                      <Text style={styles.topicText}>{topic}</Text>
-                    </View>
-                    {idx !== topics.length - 1 && <View style={{height: 16}} />}
-                  </React.Fragment>
-                ))}
-              </ScrollView>
-            )}
+        <View style={styles.sectionSpacing}>
+          <View style={styles.cardShadow}>
+            <View style={styles.resultCard}>
+              {loading ? (
+                <ActivityIndicator style={{ marginVertical: 32 }} color={colors.primary} />
+              ) : topics.length === 0 ? (
+                <Text style={styles.emptyText}>아직 인기 질문이 없습니다.{"\n"}'핫토픽 보기' 버튼을 눌러주세요.</Text>
+              ) : (
+                <View style={styles.topicListScrollContent}>
+                  {topics.map((topic, idx) => (
+                    <React.Fragment key={idx}>
+                      <View style={styles.topicRow}>
+                        <Text style={styles.topicRank}>{idx + 1}위</Text>
+                        <Text style={styles.topicText}>{topic}</Text>
+                      </View>
+                      {idx !== topics.length - 1 && <View style={{height: 16}} />}
+                    </React.Fragment>
+                  ))}
+                </View>
+              )}
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={styles.sectionSpacing}>
-        <View style={styles.cardShadow}>
-          <View style={styles.selectCard}>
-            <Text style={styles.cardLabel}>연령대 선택</Text>
-            <Pressable
-              style={styles.ageSelectButton}
-              onPress={() => setModalVisible(true)}
-              android_ripple={{ color: colors.gray }}
-            >
-              <Text style={styles.ageSelectButtonText}>{ageGroup}</Text>
-            </Pressable>
+        <View style={styles.sectionSpacing}>
+          <View style={styles.cardShadow}>
+            <View style={styles.selectCard}>
+              <Text style={styles.cardLabel}>연령대 선택</Text>
+              <Pressable
+                style={styles.ageSelectButton}
+                onPress={() => setModalVisible(true)}
+                android_ripple={{ color: colors.gray }}
+              >
+                <Text style={styles.ageSelectButtonText}>{ageGroup}</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={styles.buttonArea}>
-        <RoundedButton
-          title={loading ? '불러오는 중...' : '핫토픽 보기'}
-          onPress={handleShowTopics}
-          style={styles.button}
-          disabled={loading}
-        />
-      </View>
+        <View style={styles.buttonArea}>
+          <RoundedButton
+            title={loading ? '불러오는 중...' : '핫토픽 보기'}
+            onPress={handleShowTopics}
+            style={styles.button}
+            disabled={loading}
+          />
+        </View>
+      </ScrollView>
 
       <Modal
         visible={modalVisible}
@@ -164,8 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     alignItems: 'center',
-    width: '100%',
-    maxWidth: 340,
+    alignSelf: 'stretch',
     minHeight: 70,
   },
   cardLabel: {
@@ -176,7 +176,8 @@ const styles = StyleSheet.create({
     fontFamily: 'base_font',
   },
   ageSelectButton: {
-    width: '100%',
+    width: 200,
+    alignSelf: 'center',
     paddingVertical: 14,
     borderRadius: 8,
     borderWidth: 1.5,
@@ -190,6 +191,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: 'bold',
     fontFamily: 'base_font',
+    textAlign: 'center',
   },
   modalOverlay: {
     flex: 1,
