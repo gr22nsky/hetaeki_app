@@ -9,6 +9,10 @@
 - 중앙정부/지자체 복지 정책을 AI가 안내하는 모바일 앱(React Native, Expo 기반)
 - 사용자의 나이/지역/질문 정보를 바탕으로 맞춤형 복지 정책을 추천
 - GPT-4o 기반 RAG 백엔드와 연동하여 자연어 Q&A, 인기 주제, 광고 보상 등 다양한 기능 제공
+<img width="354" alt="스크린샷 2025-05-27 오전 5 47 15" src="https://github.com/user-attachments/assets/ca4e528e-3bf1-43ed-8f0f-6733675f2afc" />
+<img width="354" alt="스크린샷 2025-05-27 오전 5 45 09" src="https://github.com/user-attachments/assets/1c5a35e4-0a13-4ef5-ac7c-ba0500eb15ac" />
+<img width="354" alt="스크린샷 2025-05-27 오전 5 45 46" src="https://github.com/user-attachments/assets/f5ddff2e-d33b-4ebe-9a75-c5ef2b689714" />
+<img width="354" alt="스크린샷 2025-05-27 오전 5 46 00" src="https://github.com/user-attachments/assets/79e7b3a9-e7b4-495f-904c-ba5f91b849ad" />
 
 ---
 
