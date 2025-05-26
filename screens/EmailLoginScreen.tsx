@@ -30,7 +30,7 @@ export default function EmailLoginScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>이메일 로그인</Text>
+      <Text style={styles.title}>로그인</Text>
       <StyledInput
         placeholder="이메일"
         value={email}

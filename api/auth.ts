@@ -20,8 +20,3 @@ export async function emailSignup(data: { email: string; password: string; age: 
   const res = await instance.post('/accounts/signup/', data);
   return res.data;
 }
-
-export async function kakaoLogin(data: { access_token: string; age?: string; region?: string; subregion?: string }) {
-  const res = await instance.post('/accounts/kakao/login/', data);
-  return res.data;
-} 

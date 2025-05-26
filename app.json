@@ -28,12 +28,7 @@
       "favicon": "./assets/hetaeki_face.png"
     },
     "plugins": [
-      [
-        "@react-native-seoul/kakao-login",
-        {
-          "kakaoAppKey": "a5ed2be980d7d066bb3fe2ad5066b193"
-        }
-      ]
+      // @react-native-seoul/kakao-login 관련 설정 전체 삭제
     ]
   }
 }

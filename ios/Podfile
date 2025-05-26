@@ -13,6 +13,16 @@ install! 'cocoapods',
 
 prepare_react_native_project!
 
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if pod.name.eql?('boost')
+      def pod.downloaded?
+        true
+      end
+    end
+  end
+end
+
 target 'app' do
   use_expo_modules!
 
@@ -29,8 +39,8 @@ target 'app' do
     ]
   end
 
-  config = use_native_modules!(config_command)
-  pod 'RNKakaoLogin', :path => '../node_modules/@react-native-seoul/kakao-login/ios/'
+  config = use_native_modules!
+
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
   use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
 
@@ -38,8 +48,7 @@ target 'app' do
     :path => config[:reactNativePath],
     :hermes_enabled => podfile_properties['expo.jsEngine'] == nil || podfile_properties['expo.jsEngine'] == 'hermes',
     # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/..",
-    :privacy_file_aggregation_enabled => podfile_properties['apple.privacyManifestAggregationEnabled'] != 'false',
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
   post_install do |installer|

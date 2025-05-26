@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, Button, StyleSheet } from 'react-native';
+import { showRewardedAd } from '../utils/showRewardedAd';
 
 export default function AdRewardModal({ visible, onClose, onReward }) {
   return (
@@ -8,7 +9,7 @@ export default function AdRewardModal({ visible, onClose, onReward }) {
         <View style={styles.modal}>
           <Text style={styles.title}>광고 시청</Text>
           <Text style={styles.desc}>질문/핫토픽을 보려면 광고를 시청해야 합니다.</Text>
-          <Button title="광고 시청 완료" onPress={onReward} />
+          <Button title="광고 시청" onPress={() => showRewardedAd(onReward)} />
           <Button title="닫기" onPress={onClose} color="#888" />
         </View>
       </View>

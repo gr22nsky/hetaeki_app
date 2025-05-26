@@ -36,22 +36,11 @@
           <string>exp+hetaekiapp</string>
         </array>
       </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>kakaoa5ed2be980d7d066bb3fe2ad5066b193</string>
-        </array>
-      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
-    <key>KAKAO_APP_KEY</key>
-    <string>a5ed2be980d7d066bb3fe2ad5066b193</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
-      <string>kakaokompassauth</string>
-      <string>storykompassauth</string>
-      <string>kakaolink</string>
     </array>
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
@@ -90,5 +79,7 @@
     <string>Light</string>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-3940256099942544~3347511713</string>
   </dict>
 </plist>

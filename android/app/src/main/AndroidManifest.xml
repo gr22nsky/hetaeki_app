@@ -27,13 +27,5 @@
         <data android:scheme="exp+hetaekiapp"/>
       </intent-filter>
     </activity>
-    <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity" android:exported="true">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:host="oauth" android:scheme="kakaoa5ed2be980d7d066bb3fe2ad5066b193"/>
-      </intent-filter>
-    </activity>
   </application>
 </manifest>
